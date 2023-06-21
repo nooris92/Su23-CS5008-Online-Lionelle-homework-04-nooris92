@@ -203,6 +203,7 @@ int dll_get(dll_t* l, int pos)
 {
     if (l == NULL || pos < 0 || pos >= l->count)
     {
+    	printf("Sorry no such index is available right now. Returning -1 \n");
         return -1;
     }
     
