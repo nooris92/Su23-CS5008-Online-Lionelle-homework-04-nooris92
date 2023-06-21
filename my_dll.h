@@ -199,14 +199,24 @@ void destroy_dll(dll_t* l) {
 
     free(l);
 }
+// Returns the item at position pos starting at 0 ( 0 being the first item )
+// Returns -1 if the list is NULL
+//  (does not remove the item)
+// Returns 0 on failure:
+//  * we tried to get at a negative location.
+//  * we tried to get past the size of the list
+// Assume no negative numbers in the list or the number zero.
 int dll_get(dll_t* l, int pos)
 {
-    if (l == NULL || pos < 0 || pos >= l->count)
+    if (l == NULL )
     {
-    	printf("Sorry no such index is available right now. Returning -1 \n");
+    	
         return -1;
     }
-    
+    else if(|| pos < 0 || pos >= l->count)
+    {
+    	return 0;
+	}
     node_t* currentNode = l->head;
     int i;
     
