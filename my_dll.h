@@ -1,6 +1,6 @@
 #ifndef MYDLL_H
 #define MYDLL_H
-#include<stdio.h>
+
 #include <stdlib.h>
 
 typedef struct node {
@@ -73,8 +73,7 @@ int dll_push_back(dll_t* l, int item) {
     node_t* newNode = (node_t*)malloc(sizeof(node_t));
    // node_t* newNode = malloc(sizeof(node_t));
     
-    if (newNode == NULL) 
-	{
+    if (newNode == NULL) {
         return 0;
     }
     
@@ -154,43 +153,37 @@ int dll_pop_back(dll_t* l) {
 //  * we tried to insert past the size of the list
 //   (inserting at the size should be equivalent as calling push_back).
 int dll_insert(dll_t* l, int pos, int item) {
-    if (l == NULL ) 
-	{
+    if (l == NULL ) {
         return -1;
     }
-    if( pos < 0 || pos > l->count)
+    if(pos < 0 || pos > l->count)
     {
     	return 0;
 	}
-	
-	node_t* newNode = (node_t*)malloc(sizeof(node_t));
-	
-    if (newNode == NULL)
-    {
-        return 0;
-    }
-    if (pos == 0) 
-	{
+
+    if (pos == 0) {
         return dll_push_front(l, item);
     } else if (pos == l->count) {
         return dll_push_back(l, item);
     }
 
+
+	node_t* newNode = (node_t*)malloc(sizeof(node_t));
+
+
+    if (newNode == NULL) {
+        return 0;
+    }
+	
     node_t* current = l->head;
     int i;
 
-    for (i = 0; i < pos; i++) {
+    for (i = 0; i < pos; i++) 
+	{
         current = current->next;
     }
 
-	node_t* newNode2 = (node_t*)malloc(sizeof(node_t));
-
-    //node_t* newNode = malloc(sizeof(node_t));
-
-    if (newNode == NULL) 
-	{
-        return 0;
-    }
+	
 
     newNode->data = item;
     newNode->previous = current->previous;
@@ -309,7 +302,7 @@ void free_dll(dll_t* t)
 }
 void dll_print(dll_t* l) {
     if (l == NULL) {
-       
+        printf("Invalid DLL reference\n");
         return;
     }
 
@@ -331,4 +324,3 @@ void dll_print(dll_t* l) {
 }
 
 #endif /* MYDLL_H */
-
